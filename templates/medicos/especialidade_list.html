@@ -1,0 +1,33 @@
+{% extends "accounts/index.html" %}
+
+{% block title %}
+   Carreras
+{% endblock %}
+
+{% block accounts_container %}
+<h2>Carreras</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nombre
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for Carreras in object_list %}
+        <tr>
+            <td>
+                <a href=""># {{ Carreras.pk }}</a>
+            </td>
+            <td>
+                {{ Carreras.nombre }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

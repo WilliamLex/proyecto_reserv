@@ -1,0 +1,57 @@
+{% extends "accounts/index.html" %}
+
+{% block title %}
+    Laboratorios
+{% endblock %}
+
+{% block accounts_container %}
+<h2>Laboratorios</h2>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Correo
+            </th>
+            <th>
+                ci
+            </th>
+            <th>
+                Carreras
+            </th>
+            <th>
+                Celular
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for docente in object_list %}
+        <tr>
+            <td>
+                <a href=""># {{ docente.pk }}</a>
+            </td>
+            <td>
+                {{ docente.nombre }}
+            </td>
+            <td>
+                {{ docente.correo }}
+            </td>
+            <td>
+                {{ docente.ci }}
+            </td>
+            <td>
+                {{ docente.carreras }}
+            </td>
+            <td>
+                {{ docente.celular }}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
