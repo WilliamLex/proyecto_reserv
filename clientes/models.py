@@ -15,13 +15,13 @@ class Cliente(models.Model):
     
     phone_regex = RegexValidator(
         regex=r'^\+?1?\d{9,15}$',
-        message="O número precisa estar neste formato: \
-                        '+99 99 9999-0000'.")
+        message="El número debe estar en el formato: \
+                        '+593 999999999'.")
 
-    telefone = models.CharField(verbose_name="Telefone",
+    telefone = models.CharField(verbose_name="Telefono",
                                 validators=[phone_regex],
                                 max_length=17, null=True, blank=True)
-    cpf = CPFField(verbose_name="CPF",
+    cpf = CPFField(verbose_name="CI",
                     max_length=50,
                     unique=True,)
     

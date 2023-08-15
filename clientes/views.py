@@ -10,7 +10,7 @@ from .models import Cliente, Consulta
 class ClienteCreateView(LoginRequiredMixin ,CreateView):
     
     model = Cliente
-    template_name = 'clientes/cadastro.html'
+    template_name = 'clientes/registro.html'
     fields = ['sexo', 'telefone', 'cpf']
     success_url = reverse_lazy('index')
     
@@ -42,7 +42,7 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
 
     model = Consulta
     login_url = 'accounts:login'
-    template_name = 'clientes/cadastro.html'
+    template_name = 'clientes/registro.html'
     fields = ['agenda']
     success_url = reverse_lazy('clientes:consulta_list')
     
@@ -52,19 +52,19 @@ class ConsultaCreateView(LoginRequiredMixin, CreateView):
             form.save()
         except IntegrityError as e:
             if 'UNIQUE constraint failed' in e.args[0]:
-                messages.warning(self.request, 'Você não pode marcar esta consulta')
+                messages.warning(self.request, 'No puedes agendar esta resezva')
                 return HttpResponseRedirect(reverse_lazy('clientes:consulta_create'))
         except Cliente.DoesNotExist:
-            messages.warning(self.request, 'Complete seu cadastro')
+            messages.warning(self.request, 'Completa tu registro')
             return HttpResponseRedirect(reverse_lazy('clientes:cliente_cadastro'))
-        messages.info(self.request, 'Consulta marcada com sucesso!')
+        messages.info(self.request, 'Reserva agendada con éxito!')
         return HttpResponseRedirect(reverse_lazy('clientes:consulta_list'))
     
 class ConsultaUpdateView(LoginRequiredMixin, UpdateView):
 
     model = Consulta
     login_url = 'accounts:login'
-    template_name = 'clientes/cadastro.html'
+    template_name = 'clientes/registro.html'
     fields = ['agenda']
     success_url = reverse_lazy('medicos:Consulta_lista')
     
@@ -78,7 +78,7 @@ class ConsultaDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'form_delete.html'
 
     def get_success_url(self):
-        messages.success(self.request, "Consulta excluída com sucesso!")
+        messages.success(self.request, "Reserva eliminada con éxito!")
         return reverse_lazy('clientes:consulta_list')
 
 
@@ -92,12 +92,12 @@ class ConsultaListView(LoginRequiredMixin, ListView):
         try:
             cliente = Cliente.objects.get(user=user)
         except Cliente.DoesNotExist:
-            messages.warning(self.request, 'Crie uma Consulta')
+            messages.warning(self.request, 'Crea una reserva')
             return None
         try:
             consultas = Consulta.objects.filter(cliente=cliente).order_by('-pk')
         except Consulta.DoesNotExist:
-            messages.warning(self.request, 'Crie uma Consulta')
+            messages.warning(self.request, 'Crea una reserva')
             return None
         return consultas
 

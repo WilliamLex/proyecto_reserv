@@ -4,6 +4,7 @@ from medicos.models import Especialidade, Medico, Agenda
 
 class EspecialidadeAdmin(admin.ModelAdmin):
     list_display = ['nome']
+    verbose_name_plural = "Laboratorios"
     
 class MedicoAdmin(admin.ModelAdmin):
     list_display = [

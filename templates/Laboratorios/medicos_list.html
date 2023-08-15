@@ -30,25 +30,25 @@
         </tr>
     </thead>
     <tbody>
-        {% for docente in object_list %}
+        {% for Laboratorios in object_list %}
         <tr>
             <td>
-                <a href=""># {{ docente.pk }}</a>
+                <a href=""># {{ Laboratorios.pk }}</a>
             </td>
             <td>
-                {{ docente.nombre }}
+                {{ Laboratorios.nombre }}
             </td>
             <td>
-                {{ docente.correo }}
+                {{ Laboratorios.correo }}
             </td>
             <td>
-                {{ docente.ci }}
+                {{ Laboratorios.ci }}
             </td>
             <td>
-                {{ docente.carreras }}
+                {{ Laboratorios.carreras }}
             </td>
             <td>
-                {{ docente.celular }}
+                {{ Laboratorios.celular }}
             </td>
         </tr>
         {% endfor %}
