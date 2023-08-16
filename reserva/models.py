@@ -11,7 +11,7 @@ class Especialidade(models.Model):
     def __str__(self):
         return f'{self.nome}'
     
-class Medico(models.Model):
+class Laboratorios(models.Model):
     nome = models.CharField(verbose_name="Nombre del laboratorio", max_length=200)
     email = models.EmailField(verbose_name="Correo electronico")
     crm = models.CharField(verbose_name="Nombre del responsable CRM", max_length=200)
@@ -40,7 +40,9 @@ def validar_dia(value):
         raise ValidationError('Elige un día laborable de la semana.')
 
 class Agenda(models.Model):
-    medico = ForeignKey(Medico, on_delete=models.CASCADE, related_name='agenda')
+    
+    laboratorio = ForeignKey(Laboratorios, on_delete=models.CASCADE, related_name='agenda')
+    
     dia = models.DateField(help_text="Ingrese una fecha para la agenda", validators=[validar_dia])
     
     HORARIOS = (
@@ -67,4 +69,4 @@ class Agenda(models.Model):
         unique_together = ('horario', 'dia')
         
     def __str__(self):
-        return f'{self.dia.strftime("%b %d %Y")} - {self.get_horario_display()} - {self.medico}'
+        return f'{self.dia.strftime("%b %d %Y")} - {self.get_horario_display()} - {self.laboratorio}'

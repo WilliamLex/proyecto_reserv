@@ -27,7 +27,7 @@ INSTALLED_APPS = [
     
     'accounts',
     'clientes',
-    'medicos',
+    'reserva',
 ]
 
 MIDDLEWARE = [

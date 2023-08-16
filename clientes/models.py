@@ -3,7 +3,7 @@ from django.db.models.fields.related import ForeignKey, OneToOneField
 from django_cpf_cnpj.fields import CPFField
 from django.core.validators import RegexValidator
 from django.db import models
-from medicos.models import Agenda
+from reserva.models import Agenda
 
 class Cliente(models.Model):
     SEXO = (
